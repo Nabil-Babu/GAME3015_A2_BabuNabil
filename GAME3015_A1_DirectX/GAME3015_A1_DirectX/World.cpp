@@ -13,20 +13,29 @@ World::World(Game* game)
 
 void World::update(const GameTimer& gt)
 {
+	
+	while (!mCommandQueue.isEmpty())
+		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
+
 	mSceneGraph->update(gt);
 
-	XMFLOAT3 position = mPlayerAircraft->getWorldPosition();
+	/*XMFLOAT3 position = mPlayerAircraft->getWorldPosition();
 	XMFLOAT3 velocity = mPlayerAircraft->getVelocity();
 	if (position.x < mWorldBounds.x || position.x > mWorldBounds.y)
 	{
 		velocity.x = -velocity.x;
 		mPlayerAircraft->setVelocity(velocity);
-	}
+	}*/
 }
 
 void World::draw()
 {
 	mSceneGraph->draw();
+}
+
+CommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
 }
 
 void World::loadTextures(
@@ -157,7 +166,7 @@ void World::buildScene()
 	mPlayerAircraft = player.get();
 	mPlayerAircraft->setPosition(0, 0.1, 0.0);
 	mPlayerAircraft->setScale(0.5, 0.5, 0.5);
-	mPlayerAircraft->setVelocity(mScrollSpeed, 0.f, 0.f);
+	//mPlayerAircraft->setVelocity(mScrollSpeed, 0.f, 0.f);
 	mSceneGraph->attachChild(std::move(player));
 
 	std::unique_ptr<Aircraft> enemy1(new Aircraft(Aircraft::Raptor, mGame));

@@ -1,4 +1,5 @@
 #include "SceneNode.hpp"
+#include "Command.hpp"
 #include "Game.hpp"
 
 SceneNode::SceneNode(Game* game)
@@ -139,6 +140,21 @@ XMFLOAT4X4 SceneNode::getTransform() const
 		XMMatrixRotationZ(mWorldRotation.z) *
 		XMMatrixTranslation(mWorldPosition.x, mWorldPosition.y, mWorldPosition.z));
 	return transform;
+}
+
+void SceneNode::onCommand(const Command& command, const GameTimer& gt)
+{
+	if (command.category & getCategory())
+		command.action(*this, gt);
+
+	// Command children
+	for (Ptr& child : mChildren)
+		child->onCommand(command, gt);
+}
+
+unsigned int SceneNode::getCategory() const
+{
+	return Category::Scene;
 }
 
 void SceneNode::move(float x, float y, float z)

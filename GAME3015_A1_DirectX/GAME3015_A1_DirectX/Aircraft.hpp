@@ -15,11 +15,12 @@ public:
 
 public:
 	Aircraft(Type type, Game* game);
+	virtual unsigned int getCategory() const; 
 
 
 private:
 	virtual void		drawCurrent() const;
-	virtual void updateCurrent(); 
+	virtual void		updateCurrent(); 
 	virtual void		buildCurrent();
 
 

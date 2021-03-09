@@ -24,6 +24,7 @@
     <ProjectGuid>{2e506c3b-8f61-4688-998e-0ef2be79f880}</ProjectGuid>
     <RootNamespace>GAME3015A1DirectX</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>GAME3015_A2_DirectX</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -147,10 +148,13 @@
     <ClCompile Include="..\..\Common\GeometryGenerator.cpp" />
     <ClCompile Include="..\..\Common\MathHelper.cpp" />
     <ClCompile Include="Aircraft.cpp" />
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FrameResource.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SpriteNode.cpp" />
     <ClCompile Include="World.cpp" />
@@ -166,9 +170,13 @@
     <ClInclude Include="..\..\Common\MathHelper.h" />
     <ClInclude Include="..\..\Common\UploadBuffer.h" />
     <ClInclude Include="Aircraft.hpp" />
+    <ClInclude Include="Category.hpp" />
+    <ClInclude Include="Command.hpp" />
+    <ClInclude Include="CommandQueue.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="FrameResource.h" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="SceneNode.hpp" />
     <ClInclude Include="SpriteNode.h" />
     <ClInclude Include="World.hpp" />

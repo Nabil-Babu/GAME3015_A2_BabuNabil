@@ -63,6 +63,7 @@ void Game::OnResize()
 void Game::Update(const GameTimer& gt)
 {
 	OnKeyboardInput(gt);
+	//ProcessInput(gt);
 	_World.update(gt);
 	//UpdateCamera(gt);
 
@@ -175,57 +176,23 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.y = y;
 }
 
+void Game::OnKeyDown(WPARAM btnState)
+{
+
+}
+
 void Game::OnKeyboardInput(const GameTimer& gt)
 {
-	const float dt = gt.DeltaTime();
-
-	_World.GetCamera()->GetLook();
-	float tmin = 0;
-	float buffer = 0.5;
-	XMFLOAT3  oppositef3(-1, -1, -1);
-	XMVECTOR opposite = XMLoadFloat3(&oppositef3);
-
-	if (GetAsyncKeyState('W') & 0x8000)
-	{
-		bool hit = false;
-
-		if (!hit)
-		{
-			_World.GetCamera()->Walk(10.0f * dt);
-
-		}
-	}
-
-	if (GetAsyncKeyState('S') & 0x8000)
-	{
-		bool hit = false;
-		if (!hit)
-		{
-			_World.GetCamera()->Walk(-10.0f * dt);
-		}
-
-	}
-	if (GetAsyncKeyState('A') & 0x8000)
-	{
-		bool hit = false;
-		if (!hit)
-		{
-			_World.GetCamera()->Strafe(-10.0f * dt);
-		}
-
-
-	}
-	if (GetAsyncKeyState('D') & 0x8000)
-	{
-		bool hit = false;
-		if (!hit)
-		{
-			_World.GetCamera()->Strafe(10.0f * dt);
-		}
-	}
-
-
 	_World.GetCamera()->UpdateViewMatrix();
+
+	ProcessInput(gt); 
+}
+
+void Game::ProcessInput(const GameTimer& gt)
+{
+	CommandQueue& commands = _World.getCommandQueue();
+	_Player.handleEvent(commands, gt);
+	_Player.handleRealtimeInput(commands, gt);
 }
 
 void Game::UpdateCamera(const GameTimer& gt)
@@ -333,6 +300,8 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 	auto currPassCB = mCurrFrameResource->PassCB.get();
 	currPassCB->CopyData(0, mMainPassCB);
 }
+
+
 
 void Game::LoadWorldTextures()
 {

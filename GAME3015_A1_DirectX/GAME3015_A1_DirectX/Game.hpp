@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include "Player.hpp"
 
 class Game : public D3DApp
 {
@@ -17,6 +18,7 @@ private:
 	virtual void OnMouseDown(WPARAM btnState, int x, int y)override;
 	virtual void OnMouseUp(WPARAM btnState, int x, int y)override;
 	virtual void OnMouseMove(WPARAM btnState, int x, int y)override;
+	virtual void OnKeyDown(WPARAM btnState); 
 
 	void OnKeyboardInput(const GameTimer& gt);
 	void UpdateCamera(const GameTimer& gt);
@@ -24,6 +26,8 @@ private:
 	void UpdateObjectCBs(const GameTimer& gt);
 	void UpdateMaterialCBs(const GameTimer& gt);
 	void UpdateMainPassCB(const GameTimer& gt);
+
+	void ProcessInput(const GameTimer& gt);
 
 	// Load World Specific Settings
 	void LoadWorldTextures();
@@ -74,6 +78,7 @@ private:
 	POINT mLastMousePos;
 	
 	World _World;
+	Player _Player; 
 public:
 	std::vector<std::unique_ptr<RenderItem>>& getRenderItems() { return mAllRitems; }
 	std::unordered_map<std::string, std::unique_ptr<Material>>& getMaterials() { return mMaterials; }
