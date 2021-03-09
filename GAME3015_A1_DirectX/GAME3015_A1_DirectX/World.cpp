@@ -171,17 +171,17 @@ void World::buildScene()
 
 	std::unique_ptr<Aircraft> enemy1(new Aircraft(Aircraft::Raptor, mGame));
 	auto raptor = enemy1.get();
-	raptor->setPosition(0.5, 0, 1);
-	raptor->setScale(1.0, 1.0, 1.0);
+	raptor->setPosition(0.5, 0.1, 1);
+	raptor->setScale(0.5, 0.5, 0.5);
 	raptor->setWorldRotation(0, XM_PI, 0);
-	mPlayerAircraft->attachChild(std::move(enemy1));
+	mSceneGraph->attachChild(std::move(enemy1));
 
 	std::unique_ptr<Aircraft> enemy2(new Aircraft(Aircraft::Raptor, mGame));
 	auto raptor2 = enemy2.get();
-	raptor2->setPosition(-0.5, 0, 1);
-	raptor2->setScale(1.0, 1.0, 1.0);
+	raptor2->setPosition(-0.5, 0.1, 1);
+	raptor2->setScale(0.5, 0.5, 0.5);
 	raptor2->setWorldRotation(0, XM_PI, 0);
-	mPlayerAircraft->attachChild(std::move(enemy2));
+	mSceneGraph->attachChild(std::move(enemy2));
 
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
 	mBackground = backgroundSprite.get();

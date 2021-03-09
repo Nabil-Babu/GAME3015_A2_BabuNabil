@@ -29,13 +29,14 @@ Player::Player()
 
 void Player::handleEvent(CommandQueue& commands, const GameTimer& gt)
 {
-
+	// TO-DO: Handle One time Events
 }
 
 void Player::handleRealtimeInput(CommandQueue& commands, const GameTimer& gt)
 {
 
 	float playerSpeed = 3000.0f * gt.DeltaTime(); 
+	// float playerSpeed = 3.0f; 
 	if (d3dUtil::IsKeyDown('A'))
 	{
 		Command moveLeft;

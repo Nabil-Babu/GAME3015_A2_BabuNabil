@@ -1,6 +1,7 @@
 #pragma once
 #include "Command.hpp"
 #include "../../Common/d3dUtil.h"
+#include <map>
 
 class CommandQueue;
 
