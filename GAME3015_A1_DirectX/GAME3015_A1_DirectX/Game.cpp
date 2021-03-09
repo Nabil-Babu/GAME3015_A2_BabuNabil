@@ -176,6 +176,53 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 
 void Game::OnKeyboardInput(const GameTimer& gt)
 {
+	const float dt = gt.DeltaTime();
+
+	_World.GetCamera()->GetLook();
+	float tmin = 0;
+	float buffer = 0.5;
+	XMFLOAT3  oppositef3(-1, -1, -1);
+	XMVECTOR opposite = XMLoadFloat3(&oppositef3);
+
+	if (GetAsyncKeyState(VK_UP) & 0x8000)
+	{
+		bool hit = false;
+
+		if (!hit)
+		{
+			_World.GetCamera()->Walk(10.0f * dt);
+
+		}
+	}
+
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	{
+		bool hit = false;
+		if (!hit)
+		{
+			_World.GetCamera()->Walk(-10.0f * dt);
+		}
+
+	}
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	{
+		bool hit = false;
+		if (!hit)
+		{
+			_World.GetCamera()->Strafe(-10.0f * dt);
+		}
+
+
+	}
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	{
+		bool hit = false;
+		if (!hit)
+		{
+			_World.GetCamera()->Strafe(10.0f * dt);
+		}
+	}
+
 	_World.GetCamera()->UpdateViewMatrix();
 
 	ProcessInput(gt); 

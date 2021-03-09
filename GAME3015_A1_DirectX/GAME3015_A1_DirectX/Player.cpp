@@ -35,8 +35,8 @@ void Player::handleEvent(CommandQueue& commands, const GameTimer& gt)
 void Player::handleRealtimeInput(CommandQueue& commands, const GameTimer& gt)
 {
 
-	float playerSpeed = 3000.0f * gt.DeltaTime(); 
-	// float playerSpeed = 3.0f; 
+	float playerSpeed = 1000.0f * gt.DeltaTime(); 
+	
 	if (d3dUtil::IsKeyDown('A'))
 	{
 		Command moveLeft;
